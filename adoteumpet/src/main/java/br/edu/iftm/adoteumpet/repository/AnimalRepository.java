@@ -76,4 +76,12 @@ public class AnimalRepository {
                 animal.getPorte(), animal.getData_entrada(), animal.getDescricao(), animal.getData_adocao(),
                 animal.getValidacao_adocao());
     }
+
+
+    /* ============================= teste validação adoção ==============================================*/
+
+    public int atualizaAdocao(Integer id, Integer id_user, Animal animal) {
+        String consulta = "select * from animal where id = ?";
+        return jdbc.update(consulta, animal.getValidacao_adocao(), animal.getId());
+    }
 }

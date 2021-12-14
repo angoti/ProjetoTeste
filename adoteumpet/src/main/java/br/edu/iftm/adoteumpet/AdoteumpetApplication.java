@@ -19,9 +19,11 @@ public class AdoteumpetApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		jdbcTemplate.execute("CREATE TABLE usuario(id SERIAL, nome VARCHAR(255), cpf VARCHAR(255), email varchar(255), PRIMARY KEY (id))");	
-		jdbcTemplate.update("INSERT INTO usuario(nome, cpf, email) VALUES (?, ?, ?)", "Edson Angoti Júnior", "11122233344", "edson@gmail.com");
-		jdbcTemplate.update("INSERT INTO usuario(nome, cpf, email) VALUES (?, ?, ?)", "Clarimundo Machado", "55566677788", "clarimundo@gmail.com");
+			
+		jdbcTemplate.execute("CREATE TABLE usuario(id SERIAL, nome VARCHAR(255), cpf VARCHAR(255), email varchar(255), endereco varchar(255), telefone varchar(255), data_nasc varchar(255), sexo varchar(255), senha varchar(255), PRIMARY KEY (id))");	
+		jdbcTemplate.update("INSERT INTO usuario(nome, cpf, email, endereco, telefone, data_nasc, sexo, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", "Edson Angoti Júnior", "11122233344", "edson@gmail.com", "rua fulano", "998724532", "04-10-1980", "Masculino", "123456");
+
+		jdbcTemplate.update("INSERT INTO usuario(nome, cpf, email, endereco, telefone, data_nasc, sexo, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", "Clarimundo Machado", "55566677788", "clarimundo@gmail.com", "rua maria jose", "995764562","04-10-1980", "Masculino", "147934");
 
 		jdbcTemplate.execute("CREATE TABLE animal(id SERIAL, nome VARCHAR(255), data_nasc VARCHAR(255), sexo char, raca VARCHAR(255), porte char, data_entrada VARCHAR(255), descricao VARCHAR(255), data_adocao VARCHAR(255), validacao_adocao boolean, id_user int, PRIMARY KEY (id))");		
 
