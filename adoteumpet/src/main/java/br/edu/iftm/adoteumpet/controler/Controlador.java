@@ -25,7 +25,7 @@ public class Controlador {
     @Autowired
     AnimalRepository repoAnimal;
 
-    @GetMapping(value = "/home")
+    @GetMapping(value = {"/","/home"})
     public String home() {
         return "home";
     }

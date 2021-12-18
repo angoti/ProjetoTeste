@@ -1,21 +1,21 @@
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS `usuarios` (
 	id_user INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nome VARCHAR(255),
     cpf VARCHAR(255) UNIQUE,
     data_nasc VARCHAR(255),
-    sexo CHAR(1) CHECK(sexo IN ("M", "F")),
+    sexo CHAR(1),
     endereco VARCHAR(255),
     telefone VARCHAR(255) UNIQUE,
     email VARCHAR(255) UNIQUE,
-    senha VARCHAR(255),
-    papel SET ("administrador")
+    senha VARCHAR(255)
+    
 );
 
-CREATE TABLE animais (
+CREATE TABLE IF NOT EXISTS `animais` (
 	id_pet INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     nome VARCHAR(255),
     data_nasc VARCHAR(255),
-    sexo CHAR(1) CHECK(sexo IN ("M", "F")),
+    sexo CHAR(1),
     raca VARCHAR(255),
     porte SET ('pequeno', 'medio', 'grande'),
     data_entrada DATETIME DEFAULT now(),
