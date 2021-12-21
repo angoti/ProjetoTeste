@@ -1,8 +1,12 @@
 package br.edu.iftm.adoteumpet.controler;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,14 +29,16 @@ public class UsuarioControlador {
     }
 
     @RequestMapping(value = "/form-usuario", method = RequestMethod.POST)
-    public String gravarUsuario(Usuario usuario, RedirectAttributes ra) {
-        System.out.println(usuario.getCpf().length());
-        if (usuario.getCpf().length() != 11) {
-            ra.addFlashAttribute("dangermensage", "CPF INVALIDO!");
-        } else {
-            repo.gravaUsuario(usuario);
-            ra.addFlashAttribute("sucessmensage", "Usuário cadastrado com sucesso!");
+    public String gravarUsuario(@Valid Usuario usuario, BindingResult result,RedirectAttributes ra) {
+        System.out.println("------------------- ********* ---------------------");
+        for(ObjectError erro : result.getAllErrors()){
+            System.out.println(erro.getDefaultMessage());
         }
+        if (result.hasErrors()) {
+            return "form-usuario";
+        }
+        repo.gravaUsuario(usuario);
+        ra.addFlashAttribute("message", "Usuário cadastrado com sucesso!");
         return "redirect:/form-usuario";
     }
 

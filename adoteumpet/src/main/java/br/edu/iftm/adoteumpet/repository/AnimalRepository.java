@@ -22,7 +22,7 @@ public class AnimalRepository {
                 (res, numeroDaLinha) -> new Animal(res.getInt("id"), res.getString("nome"),
                         res.getDate("data_nasc"), res.getString("sexo").charAt(0),
                         res.getString("raca"),
-                        res.getString("porte").charAt(0), res.getDate("data_entrada"),
+                        res.getString("porte"), res.getDate("data_entrada"),
                         res.getString("descricao"), res.getDate("data_adocao"),
                         res.getBoolean("validacao_adocao"), new Usuario(), res.getString("imagem")));
         for (Animal animal : lista) {
@@ -70,7 +70,7 @@ public class AnimalRepository {
                 "select * from animal where id_pet = ?",
                 (res, rowNum) -> {
                     return new Animal(res.getInt("id"), res.getString("nome"), res.getDate("data_nasc"),
-                            res.getString("sexo").charAt(0), res.getString("raca"), res.getString("porte").charAt(0),
+                            res.getString("sexo").charAt(0), res.getString("raca"), res.getString("porte"),
                             res.getDate("data_entrada"), res.getString("descricao"), res.getDate("data_adocao"),
                             res.getBoolean("validacao_adocao"), new Usuario(), res.getString("imagem"));
                 },
@@ -92,7 +92,7 @@ public class AnimalRepository {
         return jdbc.query(
                 consulta,
                 (res, linha) -> new Animal(res.getInt("id_pet"), res.getString("nome"), res.getDate("data_nasc"),
-                        res.getString("sexo").charAt(0), res.getString("raca"), res.getString("porte").charAt(0),
+                        res.getString("sexo").charAt(0), res.getString("raca"), res.getString("porte"),
                         res.getDate("data_entrada"), res.getString("descricao"), res.getDate("data_adocao"),
                         res.getBoolean("validacao_adocao"), new Usuario(), res.getString("imagem")));
     }

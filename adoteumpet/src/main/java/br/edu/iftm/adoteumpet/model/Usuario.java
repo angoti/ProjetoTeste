@@ -1,15 +1,23 @@
 package br.edu.iftm.adoteumpet.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class Usuario {
 
     private Integer id;
     private String nome;
+    @NotEmpty
+    @Size(min = 11, max=11,message = "CPF inválido!")
     private String cpf;
     private String email;
     private String endereco;
     private String telefone;
     private String data_nasc;
-    private char sexo;
+    private Character sexo;
     private String senha;
 
     public Usuario() {
@@ -93,11 +101,11 @@ public class Usuario {
         this.data_nasc = data_nasc;
     }
 
-    public char getSexo() {
+    public Character getSexo() {
         return this.sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(Character sexo) {
         this.sexo = sexo;
     }
 

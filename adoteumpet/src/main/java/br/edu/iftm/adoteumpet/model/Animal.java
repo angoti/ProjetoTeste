@@ -8,7 +8,7 @@ public class Animal {
     private Date data_nasc;
     private char sexo;
     private String raca;
-    private char porte;
+    private String porte;
     private Date data_entrada;
     private String descricao;
     private Date data_adocao;
@@ -19,7 +19,7 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(Integer id, String nome, Date data_nasc, char sexo, String raca, char porte, Date data_entrada, String descricao, Date data_adocao, boolean validacao_adocao, Usuario usuario, String imagem) {
+    public Animal(Integer id, String nome, Date data_nasc, char sexo, String raca, String porte, Date data_entrada, String descricao, Date data_adocao, boolean validacao_adocao, Usuario usuario, String imagem) {
         this.id = id;
         this.nome = nome;
         this.data_nasc = data_nasc;
@@ -74,11 +74,11 @@ public class Animal {
         this.raca = raca;
     }
 
-    public char getPorte() {
+    public String getPorte() {
         return this.porte;
     }
 
-    public void setPorte(char porte) {
+    public void setPorte(String porte) {
         this.porte = porte;
     }
 

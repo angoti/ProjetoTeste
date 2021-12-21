@@ -9,8 +9,10 @@
         <script th:inline="javascript">
             /*<![CDATA[*/
             var listaDeAnimais = [[${ listaDeAnimais }]];
-            var contador = 0;
+            var contador = 1;
             var tamanhoDaLista = listaDeAnimais.length
+            console.log(listaDeAnimais)
+
             /*]]>*/
         </script>
 
@@ -48,30 +50,30 @@
         </div>
     </main>
     <script>
-        document.getElementById("nomeDoAnimal").innerHTML = listaDeAnimais[contador].nome;
-        document.getElementById("imagemDoAnimal").src = 'img/' + listaDeAnimais[contador].imagem;
-        document.getElementById("dataNascimentoAnimal").innerHTML = listaDeAnimais[contador].data_nasc;
-        document.getElementById("porteAnimal").innerHTML = listaDeAnimais[contador].porte;
-        document.getElementById("descricaoAnimal").innerHTML = listaDeAnimais[contador].descricao;
+        function formataData(data) {
+            return data.slice(8, 10)+"/"+data.slice(5, 7)+"/"+data.slice(0, 4)
+        }
 
         function navegador(direcao) {
             console.log(direcao)
-            if ( (contador >= (tamanhoDaLista - 1) && direcao=='avancar') || (contador <= 0 && direcao=='retroceder') ) {
+            if ((contador >= (tamanhoDaLista - 1) && direcao == 'avancar') || (contador <= 0 && direcao == 'retroceder')) {
                 alert('Fim da lista')
                 return
             }
             else {
-                direcao == 'avancar'?contador++:contador--
+                direcao == 'avancar' ? contador++ : contador--
                 console.log(contador)
                 console.log(tamanhoDaLista)
                 document.getElementById("nomeDoAnimal").innerHTML = listaDeAnimais[contador].nome;
-                document.getElementById("imagemDoAnimal").src = 'img/' + listaDeAnimais[contador].imagem;
-                document.getElementById("dataNascimentoAnimal").innerHTML = listaDeAnimais[contador].data_nasc;
+                //document.getElementById("imagemDoAnimal").src = 'img/' + listaDeAnimais[contador].imagem;
+                document.getElementById("imagemDoAnimal").src = 'https://drive.google.com/uc?id='+listaDeAnimais[contador].imagem
+                document.getElementById("dataNascimentoAnimal").innerHTML = formataData(listaDeAnimais[contador].data_nasc)
                 document.getElementById("porteAnimal").innerHTML = listaDeAnimais[contador].porte;
                 document.getElementById("descricaoAnimal").innerHTML = listaDeAnimais[contador].descricao;
             }
         }
 
+        navegador('inicio')
     </script>
 
 </div>

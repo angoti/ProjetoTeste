@@ -12,6 +12,7 @@
     <nav th:insert="fragments/barraNav ::navbar"></nav>
 
     <main class="font-weight-bold">
+        <h1 th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}">Erro</h1>
         <form class="mt-3" action="/form-usuario" method="POST" th:object="${usuario}">
             <div class="container w-75">
                 <h2 class="text-center mb-3">Faça seu cadastro</h2>
@@ -25,6 +26,7 @@
                         <div class="form-group col-md-4">
                             CPF:
                             <input class="form-control" th:field="*{cpf}" type="text" maxlength="11" required>
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
                         </div>
                 </div>
                 <div div class="row">

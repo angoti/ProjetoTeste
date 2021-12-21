@@ -22,8 +22,8 @@ public class UsuarioRepository {
     }
 
     public int gravaUsuario(Usuario usuario){
-        String consulta = "insert into usuario(nome, cpf, email, endereco, telefone, data_nasc, sexo, senha) values(?,?,?,?,?,?,?,?)";
-        return jdbc.update(consulta, usuario.getNome(), usuario.getCpf(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getData_nasc(), usuario.getSexo(), usuario.getSenha());
+        String consulta = "insert into usuarios(nome, cpf, email, endereco, telefone, data_nasc, sexo, senha) values(?,?,?,?,?,?,?,?)";
+        return jdbc.update(consulta, usuario.getNome(), usuario.getCpf(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getData_nasc(), usuario.getSexo()+"", usuario.getSenha());
     }
 
     public int excluirUsuario(Integer id){
