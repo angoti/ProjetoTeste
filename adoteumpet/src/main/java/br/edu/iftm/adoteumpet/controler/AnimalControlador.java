@@ -41,20 +41,6 @@ public class AnimalControlador {
 		return "redirect:animais";
 	}
 
-	@GetMapping("/adote")
-	public String solicitaAdocao(Model modelo) {
-		List<Animal> lista = repo.buscaAnimaisEmAdocao();
-		modelo.addAttribute("listaDeAnimais", lista);
-		// if (animal.getUsuario() == null) {
-		// repo.atualizaAdocao(animal);
-		// } else {
-		// ra.addFlashAttribute("sucessmensage", "Sua solicitação está em análise! Um
-		// voluntário entrará em contato!");
-		// }
-		// return "redirect:/home";
-		return "adote";
-	}
-
 	@GetMapping("/animais")
 	String inicioAnimal(Model model) {
 		List<Animal> animais = repo.buscaTodosAnimais();

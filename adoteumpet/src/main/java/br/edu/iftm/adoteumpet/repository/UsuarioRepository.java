@@ -20,7 +20,8 @@ public class UsuarioRepository {
                 (resultados, numeroDaLinha) -> new Usuario(resultados.getInt("id_user"), resultados.getString("nome"),
                         resultados.getString("cpf"), resultados.getString("email"), resultados.getString("endereco"),
                         resultados.getString("telefone"), resultados.getString("data_nasc"),
-                        resultados.getString("sexo").charAt(0), resultados.getString("senha")));
+                        resultados.getString("sexo").charAt(0), resultados.getString("senha"),
+                        resultados.getString("papel")));
     }
 
     public int gravaUsuario(Usuario usuario) {
@@ -42,7 +43,8 @@ public class UsuarioRepository {
                     return new Usuario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("cpf"),
                             resultSet.getString("email"), resultSet.getString("endereco"),
                             resultSet.getString("telefone"), resultSet.getString("data_nasc"),
-                            resultSet.getString("sexo").charAt(0), resultSet.getString("senha"));
+                            resultSet.getString("sexo").charAt(0), resultSet.getString("senha"),
+                            resultSet.getString("papel"));
                 },
                 id);
     }
@@ -57,10 +59,12 @@ public class UsuarioRepository {
         return jdbc.queryForObject(
                 "select * from usuarios where email = ?",
                 (resultSet, rowNum) -> {
-                    return new Usuario(resultSet.getInt("id_user"), resultSet.getString("nome"), resultSet.getString("cpf"),
+                    return new Usuario(resultSet.getInt("id_user"), resultSet.getString("nome"),
+                            resultSet.getString("cpf"),
                             resultSet.getString("email"), resultSet.getString("endereco"),
                             resultSet.getString("telefone"), resultSet.getString("data_nasc"),
-                            resultSet.getString("sexo").charAt(0), resultSet.getString("senha"));
+                            resultSet.getString("sexo").charAt(0), resultSet.getString("senha"),
+                            resultSet.getString("papel"));
                 },
                 username);
     }

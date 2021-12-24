@@ -11,21 +11,35 @@ public class Usuario {
     private Integer id;
     private String nome;
     @NotEmpty
-    @Size(min = 11, max=11,message = "CPF inválido!")
+    @Size(min = 11, max = 11, message = "CPF inválido!")
     private String cpf;
-    private String email; //username login
+    private String email; // username login
     private String endereco;
     private String telefone;
     private String data_nasc;
     private Character sexo;
-    private String senha; //password login
+    private String senha; // password login
+    private String papel;
 
     public Usuario() {
-
     }
 
-    public Usuario(Integer id, String nome, String cpf, String email, String endereco, String telefone, String dataNasc, char sexo, String senha){
- 
+    public Usuario(Integer id, String nome, String cpf, String email, String endereco, String telefone,
+            String data_nasc, Character sexo, String senha, String papel) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.data_nasc = data_nasc;
+        this.sexo = sexo;
+        this.senha = senha;
+        this.papel = papel;
+    }
+
+    public Usuario(Integer id, String nome, String cpf, String email, String endereco, String telefone, String dataNasc, char sexo, String senha) {
+
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -37,12 +51,20 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Usuario(Integer id, String nome, String cpf, String email){
- 
+    public Usuario(Integer id, String nome, String cpf, String email) {
+
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+    }
+
+    public String getPapel() {
+        return this.papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
     }
 
     public Integer getId() {

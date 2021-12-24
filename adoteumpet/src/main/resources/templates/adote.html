@@ -15,7 +15,6 @@
 
             /*]]>*/
         </script>
-
         <div class="pl-5 pr-5 d-flex flex-row mt-5 justify-content-center align-items-center">
             <img src="https://images.vexels.com/media/users/3/136984/isolated/lists/0f7b26b01932f7912bd4351d2286b2af-seta-direita-grossa-1.png"
                 width="100px" height="50px" style="transform:rotate(180deg)" onclick="navegador('retroceder')">
@@ -39,10 +38,11 @@
                         <p id="descricaoAnimal" class="p-0 m-0">Saudável, já vacinado e vermifugado <span></span></p>
                     </div>
                 </div>
-
-                <a href="login"><input type="button" value="Adotar"
-                        class="mt-1 btn btn-info text-dark font-weight-bold"></a>
-
+                <div sec:authorize="isAuthenticated()">
+                    <a th:href="@{/solicita-adocao}"><input type="button" value="Adotar" class="mt-1 btn btn-info text-dark font-weight-bold"></a>
+                </div><div sec:authorize="${#bools.isFalse(isAuthenticated())}">
+                    <a th:href="@{/login}"><input type="button" value="Precisar logar" class="mt-1 btn btn-info text-dark font-weight-bold"></a>
+                </div>
             </div>
 
             <img src="https://images.vexels.com/media/users/3/136984/isolated/lists/0f7b26b01932f7912bd4351d2286b2af-seta-direita-grossa-1.png"
@@ -51,7 +51,7 @@
     </main>
     <script>
         function formataData(data) {
-            return data.slice(8, 10)+"/"+data.slice(5, 7)+"/"+data.slice(0, 4)
+            return data.slice(8, 10) + "/" + data.slice(5, 7) + "/" + data.slice(0, 4)
         }
 
         function navegador(direcao) {
@@ -66,7 +66,7 @@
                 console.log(tamanhoDaLista)
                 document.getElementById("nomeDoAnimal").innerHTML = listaDeAnimais[contador].nome;
                 //document.getElementById("imagemDoAnimal").src = 'img/' + listaDeAnimais[contador].imagem;
-                document.getElementById("imagemDoAnimal").src = 'https://drive.google.com/uc?id='+listaDeAnimais[contador].imagem
+                document.getElementById("imagemDoAnimal").src = 'https://drive.google.com/uc?id=' + listaDeAnimais[contador].imagem
                 document.getElementById("dataNascimentoAnimal").innerHTML = formataData(listaDeAnimais[contador].data_nasc)
                 document.getElementById("porteAnimal").innerHTML = listaDeAnimais[contador].porte;
                 document.getElementById("descricaoAnimal").innerHTML = listaDeAnimais[contador].descricao;
