@@ -26,17 +26,19 @@ public class UsuarioControlador {
 
     @GetMapping("/form-usuario")
     String cadastrarUsuario(Model model) {
+        System.out.println("------------------->"+1);
         model.addAttribute("usuario", new Usuario());
         return "form-usuario";
     }
 
     @PostMapping(value = "/form-usuario")
     public String gravarUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes ra) {
-        System.out.println("------------------- ********* ---------------------");
-        for (ObjectError erro : result.getAllErrors()) {
-            System.out.println(erro.getDefaultMessage());
-        }
         if (result.hasErrors()) {
+            System.out.println("------------------->"+2);
+            for (ObjectError error: result.getAllErrors()) {
+                System.out.println(error.getObjectName());
+                System.out.println(error.getDefaultMessage());
+            }
             return "form-usuario";
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
