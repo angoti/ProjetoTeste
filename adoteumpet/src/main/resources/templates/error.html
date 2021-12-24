@@ -6,8 +6,9 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout">
 <div th:fragment="conteudo" class="container text-center">
     <!-- insira seu código aqui -->
+    <h1>Erro!</h1>
     <h1 th:text="${status}">Erro!</h1>
-    <h1 th:text="${error}">Erro!</h1>
+    <p class="alert alert-danger" th:text="${error}">Erro!</p>
 </div>
 
 </html>

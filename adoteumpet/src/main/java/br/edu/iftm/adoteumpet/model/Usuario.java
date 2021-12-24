@@ -13,12 +13,12 @@ public class Usuario {
     @NotEmpty
     @Size(min = 11, max=11,message = "CPF inválido!")
     private String cpf;
-    private String email;
+    private String email; //username login
     private String endereco;
     private String telefone;
     private String data_nasc;
     private Character sexo;
-    private String senha;
+    private String senha; //password login
 
     public Usuario() {
 

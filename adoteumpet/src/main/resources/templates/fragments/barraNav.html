@@ -17,8 +17,16 @@
             <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{adote}" class="text-white">Adote</a></li>
             <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{contato}" class="text-white">Contato</a></li>
             <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{apoio}" class="text-white">Apoio</a></li>
-            <a th:href="@{form-usuario}"><input class="ml-3 py-2 px-3 font-weight-bold" type="button" value="Cadastre-se"></a>
-            <a th:href="@{login}"><input class="ml-3 py-2 px-3 font-weight-bold" type="button" value="Login"></a>
+            <a sec:authorize="isAnonymous()" th:href="@{form-usuario}"><input class="ml-3 py-2 px-3 font-weight-bold" type="button" value="Cadastre-se"></a>
+            <a sec:authorize="isAnonymous()" th:href="@{login}"><input class="ml-3 py-2 px-3 font-weight-bold" type="button" value="Login"></a>
+            <div class="py-2" sec:authorize="isAuthenticated()">
+                <span sec:authorize="isAuthenticated()" class="text-white small" sec:authentication="name"></span>
+            </div>
+            <div>
+                <form th:action="@{/logout}" method="post" class="ml-4" sec:authorize="isAuthenticated()">
+                    <input class="btn btn-secondary btn-sm p-1 small" type="submit" value="Sair" />
+                </form>
+            </div>
         </ul>
     </div>
 </div>
