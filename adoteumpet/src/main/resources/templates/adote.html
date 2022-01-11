@@ -39,9 +39,13 @@
                     </div>
                 </div>
                 <div sec:authorize="isAuthenticated()">
-                    <a th:href="@{/solicita-adocao}"><input type="button" value="Adotar" class="mt-1 btn btn-info text-dark font-weight-bold"></a>
-                </div><div sec:authorize="${#bools.isFalse(isAuthenticated())}">
-                    <a th:href="@{/login}"><input type="button" value="Precisar logar" class="mt-1 btn btn-info text-dark font-weight-bold"></a>
+                    <a id="link-adotar">
+                        <input type="button" value="Adotar" class="mt-1 btn btn-info text-dark font-weight-bold">
+                    </a>
+                </div>
+                <div sec:authorize="${#bools.isFalse(isAuthenticated())}">
+                    <a th:href="@{/login}"><input type="button" value="Precisar logar"
+                            class="mt-1 btn btn-info text-dark font-weight-bold"></a>
                 </div>
             </div>
 
@@ -70,6 +74,8 @@
                 document.getElementById("dataNascimentoAnimal").innerHTML = formataData(listaDeAnimais[contador].data_nasc)
                 document.getElementById("porteAnimal").innerHTML = listaDeAnimais[contador].porte;
                 document.getElementById("descricaoAnimal").innerHTML = listaDeAnimais[contador].descricao;
+                // redefine o link para o botão 'adotar'
+                document.getElementById("link-adotar").setAttribute("href", "solicita-adocao/" + listaDeAnimais[contador].id);
             }
         }
 

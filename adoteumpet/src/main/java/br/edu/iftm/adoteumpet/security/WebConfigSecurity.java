@@ -42,6 +42,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/usuarios").hasAuthority("admin")
+                .antMatchers("/cadAnimais").hasAuthority("admin")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

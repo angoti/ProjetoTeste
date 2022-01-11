@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.iftm.adoteumpet.model.Usuario;
+import br.edu.iftm.adoteumpet.repository.AnimalRepository;
 import br.edu.iftm.adoteumpet.repository.UsuarioRepository;
 
 @Controller
@@ -23,6 +24,9 @@ public class UsuarioControlador {
 
     @Autowired
     UsuarioRepository repo;
+
+    @Autowired
+    AnimalRepository animalRepo;
 
     @GetMapping("/form-usuario")
     String cadastrarUsuario(Model model) {
@@ -44,6 +48,7 @@ public class UsuarioControlador {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(encodedPassword);
+        usuario.setPapel("cliente");
         repo.gravaUsuario(usuario);
         ra.addFlashAttribute("message", "Usuário cadastrado com sucesso!");
         return "redirect:/form-usuario";
@@ -52,6 +57,7 @@ public class UsuarioControlador {
     @RequestMapping(value = "/usuarios", method = RequestMethod.GET)
     public String exibirUsuarios(Model modelo) {
         modelo.addAttribute("usuarios", repo.buscaTodosUsuarios());
+        modelo.addAttribute("animais", animalRepo.buscaAnimaisConfirmaAdocao());
         return "usuarios";
     }
 

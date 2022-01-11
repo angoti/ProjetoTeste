@@ -16,10 +16,10 @@ public class Controlador {
 
     // @GetMapping(value = "home")
     // public String home() {
-    //     return "home";
+    // return "home";
     // }
 
-    @GetMapping(value ={"/","/home"})
+    @GetMapping(value = { "/", "/home" })
     public String refererPage() {
         System.out.println();
         System.out.println();
@@ -54,12 +54,14 @@ public class Controlador {
 
     @GetMapping("/login")
     public String login(HttpServletRequest request) {
-        String url = request.getHeader("Referer").substring(21);
-        System.out.println();
-        System.out.println();
-        System.out.println("----------------------> Setando URL: " + url);
-        if (url.equals("/adote")) {
-            usuarioBean.setURL(url);
+        if (request.getHeader("Referer") != null) {
+            String url = request.getHeader("Referer").substring(21);
+            System.out.println();
+            System.out.println();
+            System.out.println("----------------------> Setando URL: " + url);
+            if (url.equals("/adote")) {
+                usuarioBean.setURL(url);
+            }
         }
         return "login";
     }

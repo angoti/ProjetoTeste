@@ -18,6 +18,10 @@ public class MyUserDetails implements UserDetails {
         this.usuario = usuario;
     }
 
+    public Integer getUsuarioId() {
+        return usuario.getId();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
