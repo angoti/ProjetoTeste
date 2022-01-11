@@ -9,7 +9,9 @@
     <div>
         <ul class="navbar-nav mr-4 pr-5">
             <!--Adicionei o todos só para facilitar enquanto estamos alerando o layout-->
-            <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{usuarios}" class="text-white">Todos</a></li>
+            <div sec:authorize="hasAuthority('admin')">
+                <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{usuarios}" class="text-white">Administração</a></li>
+            </div>
             <!--Tirar o todos depois-->
 
             <li class="nav-item pr-3  pl-3 pt-2 pb-2"><a th:href="@{home}" class="text-white">Home</a></li>

@@ -83,7 +83,7 @@ public class AnimalRepository {
     }
 
     /*
-     * ============================= teste validação adoção
+     * ============================= validação adoção
      */
 
     public List<Animal> buscaAnimaisEmAdocao() {
